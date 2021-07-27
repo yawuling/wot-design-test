@@ -1,0 +1,32 @@
+
+name: preview
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install node
+        uses: actions/setup-node@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Unit test
+        run: npm run unit
+
+      - name: Build Lib
+        run: npm run dist
+
+      - name: Build Docs
+        run: npm run build:docs
+
