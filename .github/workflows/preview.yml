@@ -34,4 +34,12 @@ jobs:
 
       - name: Build Docs
         run: npm run build:docs
+      
+      - name: Deploy Preview Docs
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: examples/dist/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
