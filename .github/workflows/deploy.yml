@@ -47,6 +47,14 @@ jobs:
         node-version: [12.x]
 
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v2
+
+      - name: Install Dependencies
+        run: npm install
+
       - name: Check Deploy
         run: node build/deploy/check-deploy.js
         env:
