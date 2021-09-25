@@ -47,8 +47,6 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Check Deploy
-        run:
       - name: echo
         run: |
           echo "${{ needs.beforeDeploy.outputs.changelog }}"
