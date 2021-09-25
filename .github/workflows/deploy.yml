@@ -20,7 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set-tagName
-        run: echo "::set-output name=tagName::${{ github.ref#*tags/ }}"
+      - name: Set TagName
+        id: set-tagName
+        run: |
+          tagName=${$GITHUB_REF#*tags/}
+          echo "::set-output name=tagName::${{ tagName }}"
       
         
