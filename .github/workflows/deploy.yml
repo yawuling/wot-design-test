@@ -27,6 +27,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Check Deploy
+        run: node build/deploy/check-deploy.js
+        env:
+          GITHUB_REF: ${{ $GITHUB_REF }}
+
       - name: Set Changelog
         id: set-changelog
         run: |
@@ -42,10 +47,10 @@ jobs:
         node-version: [12.x]
 
     steps:
+      - name: Check Deploy
+        run:
       - name: echo
         run: |
           echo "${{ needs.beforeDeploy.outputs.changelog }}"
           echo "${{ needs.beforeDeploy.outputs.ref }}"
           echo "haha"
-      
-        
