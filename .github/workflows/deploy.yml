@@ -21,6 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Node
+        uses: actions/setup-node@v2
+
+      - name: Install Dependencies
+        run: npm install
+
       - name: Set Changelog
         id: set-changelog
         run: |
