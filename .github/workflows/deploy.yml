@@ -23,7 +23,7 @@ jobs:
       - name: Set TagName
         id: set-tagName
         run: |
-          tagName=${$GITHUB_REF#*tags/}
-          echo "::set-output name=tagName::${{ tagName }}"
+          echo tagName=${$GITHUB_REF#*tags/}
+          echo "::set-output name=tagName::$tagName"
       
         
