@@ -15,7 +15,7 @@ jobs:
         node-version: [12.x]
 
     outputs:
-      ref: $GITHUB_REF
+      version: ${{ steps.set-version.outputs.version }}
       changelog: ${{ steps.set-changelog.outputs.changelog }}
 
     steps:
@@ -29,6 +29,11 @@ jobs:
 
       - name: Check Deploy
         run: node build/deploy/check-deploy.js
+
+      - name: Set Version
+        id: set-version
+        run: |
+          echo "::set-output name=version::$(node build/deploy/getVersion.js)"
 
       - name: Set Changelog
         id: set-changelog
@@ -48,5 +53,5 @@ jobs:
       - name: echo
         run: |
           echo "${{ needs.beforeDeploy.outputs.changelog }}"
-          echo "${{ needs.beforeDeploy.outputs.ref }}"
+          echo "${{ needs.beforeDeploy.outputs.version }}"
           echo "haha"

@@ -42,5 +42,10 @@ const versions = Object.keys(versionList)
 module.exports = versions
 
 if (versions.length > 0 && args.path) {
-  process.stdout.write((versionList[versions[0]] || '') + '\n')
+  if (args.version) {
+    const version = args.version.match(rules)[0]
+    process.stdout.write((versionList[version] || '') + '\n')
+  } else {
+    process.stdout.write((versionList[versions[0]] || '') + '\n')
+  }
 }
