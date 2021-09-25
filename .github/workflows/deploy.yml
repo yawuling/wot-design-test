@@ -7,7 +7,7 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
-  build:
+  beforeDeploy:
     runs-on: ubuntu-latest
 
     strategy:
@@ -31,11 +31,19 @@ jobs:
         id: set-changelog
         run: |
           echo "::set-output name=changelog::$(echo node build/deploy/change-log.js --path=examples/docs/docs/changelog.md --version=$RELEASE_NAME)"
-      
+  
+  deploy:
+    needs: beforeDeploy
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
       - name: echo
         run: |
-          echo "${{ outputs.changelog }}"
-          echo "${{ outputs.ref }}"
+          echo "${{ needs.beforeDeploy.outputs.changelog }}"
+          echo "${{ needs.beforeDeploy.outputs.ref }}"
           echo "haha"
       
         
