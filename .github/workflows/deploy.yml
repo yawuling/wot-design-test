@@ -15,7 +15,7 @@ jobs:
         node-version: [12.x]
 
     outputs:
-      tagName: ${{ $GITHUB_REF }}
+      ref: $GITHUB_REF
       changelog: ${{ steps.set-changelog.outputs.changelog }}
 
     steps:
