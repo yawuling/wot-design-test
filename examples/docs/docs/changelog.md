@@ -1,5 +1,14 @@
 ## 更新日志
 
+### 2.4.25
+
+*2021-09-25*
+
+#### Bug 修复
+
+- Tabs
+  - 修复在 `display: none` 的结构中，获取不到宽度的问题 (by [@yawuling](https://github.com/yawuling) )
+
 ### 2.4.1
 
 *2021-07-01*

@@ -7,6 +7,7 @@ const minimist = require('minimist')
 const fs = require('fs')
 const path = require('path')
 const MarkdownIt = require('markdown-it')
+const pkg = require('../../package.json')
 const args = minimist(process.argv.slice(2))
 const md = new MarkdownIt()
 const rules = /\d+\.\d+\.\d+/
@@ -42,10 +43,5 @@ const versions = Object.keys(versionList)
 module.exports = versions
 
 if (versions.length > 0 && args.path) {
-  if (args.version) {
-    const version = args.version.match(rules)[0]
-    process.stdout.write((versionList[version] || '') + '\n')
-  } else {
-    process.stdout.write((versionList[versions[0]] || '') + '\n')
-  }
+  process.stdout.write((versionList[pkg.version] || '') + '\n')
 }
