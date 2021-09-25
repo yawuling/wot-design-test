@@ -10,7 +10,6 @@ const MarkdownIt = require('markdown-it')
 const pkg = require('../../package.json')
 const args = minimist(process.argv.slice(2))
 const md = new MarkdownIt()
-const rules = /\d+\.\d+\.\d+/
 const html = md.render(
   fs.readFileSync(
     args.hasOwnProperty('path')
