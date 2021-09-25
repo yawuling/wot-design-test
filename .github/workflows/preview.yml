@@ -1,8 +1,7 @@
 
 name: preview
 
-on:
-  pull_request:
+on: pull_request
 
 jobs:
   build:
@@ -14,11 +13,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
 
       - name: install node
         uses: actions/setup-node@v2
@@ -34,12 +28,3 @@ jobs:
 
       - name: Build Docs
         run: npm run build:docs
-      
-      - name: Deploy Preview Docs
-        uses: crazy-max/ghaction-github-pages@v2
-        with:
-          target_branch: gh-pages
-          build_dir: examples/dist/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
