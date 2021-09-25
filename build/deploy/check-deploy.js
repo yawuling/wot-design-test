@@ -1,5 +1,5 @@
 const stopDeploy = (reason) => {
-  process.stdout.write(reason + '\n')
+  process.stderr.write(reason + '\n')
   process.exit(1)
 }
 /** ******在此区间进行部署条件校验，不通过时调用stopDeploy停止部署************************/
