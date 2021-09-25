@@ -4,7 +4,7 @@ name: deploy
 on:
   push:
     tags:
-      - v*
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   build:
@@ -14,12 +14,13 @@ jobs:
       matrix:
         node-version: [12.x]
 
+    outputs:
+      tagName: ${{ steps.set-tagName.outputs.tagName }}
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - name: set-tagName
+        run: echo "::set-output name=tagName::${{ github.ref#*tags/ }}"
       
         
