@@ -24,7 +24,7 @@ jobs:
         id: set-tagName
         run: |
           echo $GITHUB_REF
-          echo tagName=${$GITHUB_REF#*tags/}
+          echo tagName=$($GITHUB_REF##*/)
           echo "::set-output name=tagName::$tagName"
       
         
