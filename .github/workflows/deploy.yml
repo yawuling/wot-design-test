@@ -58,8 +58,7 @@ jobs:
           RELEASE_NOTE: ${{ needs.beforeDeploy.outputs.releaseNote }}
 
       - name: Npm Publish
-        run: |
-          echo ${{ secrets.NPM_TOKEN }}
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
